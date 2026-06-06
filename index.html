@@ -293,32 +293,7 @@ td:first-child{
 
     </div>
 
-  <div id="matches">
-
-  <table>
-
-    <tr>
-        <td>
-            <img src="yikes.png" class="rating-icon">
-        </td>
-        <td>
-         <img src="11_1.png?v=2" class="match-img">
-        </td>
-    </tr>
-
-    <tr>
-        <td>
-            <img src="yikes.png" class="rating-icon">
-        </td>
-        <td>
-           <img src="11_2.png?v=2" class="match-img">
-        </td>
-    </tr>
-
-</table>
-
-</div>
-
+ <div id="matches"></div>
 </div>
 
 </div>
@@ -326,6 +301,30 @@ td:first-child{
 
 const days = document.querySelectorAll('.white, .yellow, .red');
 const matches = document.getElementById('matches');
+
+function createTable(dayNumber, matchCount){
+
+    let html = "<table>";
+
+    for(let i=1; i<=matchCount; i++){
+
+        html += `
+        <tr>
+            <td>
+                <img src="yikes.png" class="rating-icon">
+            </td>
+            <td>
+                <img src="${dayNumber}_${i}.png" class="match-img">
+            </td>
+        </tr>
+        `;
+    }
+
+    html += "</table>";
+
+    matches.innerHTML = html;
+    matches.style.display = "block";
+}
 
 days.forEach(day => {
 
@@ -337,7 +336,17 @@ days.forEach(day => {
 
         day.style.outline = '3px solid white';
 
-        matches.style.display = 'block';
+        const dayNumber = parseInt(day.textContent);
+
+        if(dayNumber === 11 || dayNumber === 12){
+            createTable(dayNumber, 2);
+        }
+        else if(dayNumber >= 13 && dayNumber <= 23){
+            createTable(dayNumber, 4);
+        }
+        else{
+            createTable(dayNumber, 6);
+        }
 
     });
 
