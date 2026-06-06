@@ -302,6 +302,36 @@ td:first-child{
 const days = document.querySelectorAll('.white, .yellow, .red');
 const matches = document.getElementById('matches');
 
+    const ratings = {
+
+    "13_2":"hit",
+
+    "14_2":"ok",
+
+    "16_1":"ok",
+
+    "17_2":"hit",
+
+    "19_2":"ok",
+
+    "20_1":"ok",
+    "20_2":"ok",
+
+    "22_1":"hit",
+
+    "23_2":"ok",
+
+    "24_2":"ok",
+    "24_4":"hit",
+
+    "26_1":"hit",
+    "26_4":"ok",
+
+    "27_1":"ok",
+    "27_4":"ok"
+
+};
+
 function createTable(dayNumber, matchCount){
 
     let html = "<table>";
@@ -311,7 +341,7 @@ function createTable(dayNumber, matchCount){
         html += `
         <tr>
             <td>
-                <img src="yikes.png" class="rating-icon">
+              <img src="${ratings[`${dayNumber}_${i}`] || 'yikes'}.png" class="rating-icon">  
             </td>
             <td>
                 <img src="${dayNumber}_${i}.png" class="match-img">
