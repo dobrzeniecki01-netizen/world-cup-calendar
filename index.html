@@ -38,17 +38,91 @@ h1{
     border:3px solid #ff0033;
 }
 
-.placeholder{
-    height:300px;
-    border:3px solid #ff0033;
+.calendar-section{
     margin-top:40px;
+    text-align:center;
+}
+
+.calendar-section h2{
+    color:white;
+    margin-bottom:20px;
+}
+
+.weekdays{
+    display:grid;
+    grid-template-columns:repeat(7,60px);
+    justify-content:center;
+    gap:10px;
+    margin-bottom:15px;
+    font-weight:bold;
+}
+
+.calendar{
+    display:grid;
+    grid-template-columns:repeat(7,60px);
+    gap:10px;
+    justify-content:center;
+}
+
+.day{
+    width:60px;
+    height:60px;
 
     display:flex;
-    align-items:center;
     justify-content:center;
+    align-items:center;
 
-    color:#ff0033;
-    font-size:24px;
+    border-radius:12px;
+    font-weight:bold;
+
+    transition:0.2s;
+}
+
+.white:hover,
+.yellow:hover,
+.red:hover{
+    transform:scale(1.08);
+    cursor:pointer;
+}
+
+.empty{
+    background:#111111;
+    color:white;
+}
+
+.white{
+    background:white;
+    color:black;
+}
+
+.yellow{
+    background:#ffd700;
+    color:black;
+}
+
+.red{
+    background:#ff0033;
+    color:white;
+}
+
+#matches{
+    margin-top:40px;
+    display:none;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+td{
+    border:2px solid #ff0033;
+    padding:20px;
+}
+
+td:first-child{
+    width:80px;
+    text-align:center;
 }
 
 </style>
@@ -64,11 +138,111 @@ h1{
     <img src="hero.png" alt="Mundial 2026">
 </div>
 
-<div class="placeholder">
-    TU BĘDZIE KALENDARZ
-</div>
+<div class="calendar-section">
+
+    <h2>Czerwiec 2026</h2>
+
+    <div class="weekdays">
+        <div>Pon</div>
+        <div>Wt</div>
+        <div>Śr</div>
+        <div>Czw</div>
+        <div>Pt</div>
+        <div>Sob</div>
+        <div>Nie</div>
+    </div>
+
+    <div class="calendar">
+
+        <div class="day empty">1</div>
+        <div class="day empty">2</div>
+        <div class="day empty">3</div>
+        <div class="day empty">4</div>
+        <div class="day empty">5</div>
+        <div class="day empty">6</div>
+        <div class="day empty">7</div>
+
+        <div class="day empty">8</div>
+        <div class="day empty">9</div>
+        <div class="day empty">10</div>
+
+        <div class="day white">11</div>
+        <div class="day white">12</div>
+        <div class="day red">13</div>
+        <div class="day yellow">14</div>
+
+        <div class="day white">15</div>
+        <div class="day yellow">16</div>
+        <div class="day red">17</div>
+        <div class="day white">18</div>
+        <div class="day white">19</div>
+        <div class="day yellow">20</div>
+        <div class="day white">21</div>
+
+        <div class="day red">22</div>
+        <div class="day white">23</div>
+        <div class="day red">24</div>
+        <div class="day white">25</div>
+        <div class="day red">26</div>
+        <div class="day yellow">27</div>
+        <div class="day empty">28</div>
+
+        <div class="day empty">29</div>
+        <div class="day empty">30</div>
+
+    </div>
+
+    <div id="matches">
+
+        <table>
+            <tr>
+                <td>A1</td>
+                <td>B1</td>
+            </tr>
+
+            <tr>
+                <td>A2</td>
+                <td>B2</td>
+            </tr>
+
+            <tr>
+                <td>A3</td>
+                <td>B3</td>
+            </tr>
+
+            <tr>
+                <td>A4</td>
+                <td>B4</td>
+            </tr>
+        </table>
+
+    </div>
 
 </div>
 
+</div>
+<script>
+
+const days = document.querySelectorAll('.white, .yellow, .red');
+const matches = document.getElementById('matches');
+
+days.forEach(day => {
+
+    day.addEventListener('click', () => {
+
+        document.querySelectorAll('.day').forEach(d => {
+            d.style.outline = 'none';
+        });
+
+        day.style.outline = '3px solid white';
+
+        matches.style.display = 'block';
+
+    });
+
+});
+
+</script>
+    
 </body>
 </html>
